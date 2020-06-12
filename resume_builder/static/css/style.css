@@ -1,0 +1,33 @@
+html
+{
+    overflow-x: hidden;
+}
+body
+{ 
+     
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+a
+{
+    text-decoration: none;
+}
+a:hover
+{
+    text-decoration: none;
+}
+footer
+{
+    background-color: black;
+    height: 28px; 
+    margin-top: 15px;
+    width:100%;
+    bottom:0;
+    left:0;
+}
+.img-fluid
+{
+    border-radius: 30px;
+}

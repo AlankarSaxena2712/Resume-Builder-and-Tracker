@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Builder
+{% endblock title %}
+
+{% block style %}
+
+<style>
+    .resume-nav {
+        width: 100px;
+    }
+</style>
+
+{% endblock style %}
+
+{% block body %}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-1"></div>
+            <div class="col-4 text-center">
+                <div class="btn-group-vertical" role="group">
+                    <a type="button" href="/resume-personal" class="btn btn-warning rounded-pill resume-nav">Personal Information</a><br>
+                    <a type="button" href="/resume-career" class="btn btn-warning rounded-pill resume-nav">Career Objective</a><br>
+                    <a type="button" href="/resume-tech-skills" class="btn btn-warning rounded-pill resume-nav">Technical Skills</a><br>
+                    <a type="button" class="btn btn-warning rounded-pill resume-nav">Academic Credentials</a><br>
+                    <a type="button" class="btn btn-warning rounded-pill resume-nav">Other Qualifications</a><br>
+                    <a type="button" class="btn btn-warning rounded-pill resume-nav">Trainging & Certification</a><br>
+                    <a type="button" class="btn btn-warning rounded-pill resume-nav">Skills & Achievements</a><br>
+                    <a type="button" class="btn btn-warning rounded-pill resume-nav">Co-Curricular Activities</a><br>
+                    <a type="button" class="btn btn-warning rounded-pill resume-nav">References</a>
+                </div>
+            </div>
+        <div class="col-6">
+            <!-- <div class="container-fluid"> -->
+                <div class="col-12">
+                    {% block resume-form %}
+                    {% endblock resume-form %}
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
