@@ -1,0 +1,55 @@
+{% extends 'resume_base.html' %}
+
+{% block resume-form %}
+
+<h2 class="mb-3">Your Interpersonal Skills</h2>
+<small>Mininum 2 skills to be added*</small>
+<form>
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="skill_1" placeholder="Interpersonal Skills " required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="skill_2" placeholder="Interpersonal Skills " required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="skill_3" placeholder="Interpersonal Skills ">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="skill_4" placeholder="Interpersonal Skills ">
+        </div>
+    </div>
+    <br>
+    <h2 class="mb-3">Your Achievements</h2>
+    <small>Mininum 2 achievements to be added*</small>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="achievement_1" placeholder="Achievements" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="achievement_2" placeholder="Achievements" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="achievement_3" placeholder="Achievements">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="achievement_4" placeholder="Achievements">
+        </div>
+    </div>
+    <a href="#" class="btn btn-outline-primary float-right my-3">Save and Proceed</a>
+</form>
+
+{% endblock resume-form %}

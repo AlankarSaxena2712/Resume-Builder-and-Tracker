@@ -1,0 +1,81 @@
+{% extends 'resume_base.html' %}
+
+{% block resume-form %}
+
+<h2 class="mb-3">Academic Qualifications</h2>
+<form>
+{% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="course">Course *</label>
+            <select class="form-control" id="course" required>
+                <option value="">Choose...</option>
+                <option value="">B. Tech</option>
+                <option value="">M. Tech</option>
+                <option value="">MCA</option>
+                <option value="">MBA</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="branch">Branch *</label>
+            <select class="form-control" id="branch" required>
+                <option value="">Choose...</option>
+                <option value="">CSE</option>
+                <option value="">IT</option>
+                <option value="">CEIT</option>
+                <option value="">CE</option>
+                <option value="">ME</option>
+                <option value="">EC</option>
+                <option value="">EN</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="university">University *</label>
+            <input type="text" class="form-control" id="University" placeholder="University" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="passing_year">Passing Year *</label>
+            <input type="text" class="form-control" id="passing_year" placeholder="Passing Year" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="percent_academic">Percentage / CGPA *</label>
+            <input type="text" class="form-control" id="percent_academic" placeholder="Percentage/CGPA" required>
+        </div>
+    </div>
+    <hr>
+    <h3>Senior Secondary School</h3>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="board_secondary_school">Board *</label>
+            <input type="text" class="form-control" id="board_secondary_school" placeholder="Board" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="passing_year_secondary_school">Passing Year *</label>
+            <input type="text" class="form-control" id="passing_year_secondary_school" placeholder="Passing Year" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="percent_secondary_school">Percentage / CGPA *</label>
+            <input type="text" class="form-control" id="percent_secondary_school" placeholder="Percentage/CGPA" required>
+        </div>
+    </div>
+    <h3>High School</h3>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="board_high_school">Board *</label>
+            <input type="text" class="form-control" id="board_high_school" placeholder="Board" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="passing_year_high_school">Passing Year *</label>
+            <input type="text" class="form-control" id="passing_year_high_school" placeholder="Passing Year" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="percent_high_school">Percentage / CGPA *</label>
+            <input type="text" class="form-control" id="percent_high_school" placeholder="Percentage/CGPA" required>
+        </div>
+    </div>
+    <a href="#" class="btn btn-outline-primary float-right my-3">Save and Proceed</a>
+</form>
+
+{% endblock resume-form %}

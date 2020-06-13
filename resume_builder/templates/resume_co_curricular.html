@@ -1,0 +1,37 @@
+{% extends 'resume_base.html' %}
+
+{% block resume-form %}
+
+<h2 class="mb-3">Co-Curricular Activities</h2>
+<small>Mininum 2 activities to be added*</small>
+<form>
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="co_curricular_1" placeholder="Co-Curricular Activites" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="co_curricular_2" placeholder="Co-Curricular Activites" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="co_curricular_3" placeholder="Co-Curricular Activites">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="co_curricular_4" placeholder="Co-Curricular Activites">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="co_curricular_5" placeholder="Co-Curricular Activites">
+        </div>
+    </div>
+    <a href="#" class="btn btn-outline-primary float-right my-3">Save and Proceed</a>
+</form>
+
+{% endblock resume-form %}

@@ -1,0 +1,58 @@
+{% extends 'resume_base.html' %}
+
+{% block resume-form %}
+
+<h2 class="mb-3">Your Certificates</h2>
+<small>Mininum 2 certificates to be added*</small>
+<form>
+{% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="certificate_1" placeholder="Certificate Description" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="certificate_2" placeholder="Certificate Description" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="certificate_3" placeholder="Certificate Description">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="text" class="form-control" id="certificate_4" placeholder="Certificate Description">
+        </div>
+    </div>
+    <br>
+    <h2>Your Internship Details</h2>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="internship_company_name">Company Name</label>
+            <input type="text" class="form-control" id="internship_company_name" placeholder="Company Name" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="internship_project_title">Project Title</label>
+            <input type="text" class="form-control" id="internship_project_title" placeholder="Project Title" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="internship_duration">Duration <small>(In Months)</small></label>
+            <input type="text" class="form-control" id="internship_duration" placeholder="Duration" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="internship_project_description">Project Description <small>(Max 200 characters)</small></label>
+            <textarea type="text" class="form-control" id="internship_project_description" rows="3" maxlength="200" placeholder="Project Description" required></textarea>
+        </div>
+    </div>
+    <a href="#" class="btn btn-outline-primary float-right my-3">Save and Proceed</a>
+</form>
+
+{% endblock resume-form %}
