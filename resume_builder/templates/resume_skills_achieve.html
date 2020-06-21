@@ -4,26 +4,26 @@
 
 <h2 class="mb-3">Your Interpersonal Skills</h2>
 <small>Mininum 2 skills to be added*</small>
-<form>
+<form method="POST">
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="skill_1" placeholder="Interpersonal Skills " required>
+            <input type="text" class="form-control" name="skill_1" id="skill_1" placeholder="Interpersonal Skills " required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="skill_2" placeholder="Interpersonal Skills " required>
+            <input type="text" class="form-control" name="skill_2" id="skill_2" placeholder="Interpersonal Skills " required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="skill_3" placeholder="Interpersonal Skills ">
+            <input type="text" class="form-control" name="skill_3" id="skill_3" placeholder="Interpersonal Skills " required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="skill_4" placeholder="Interpersonal Skills ">
+            <input type="text" class="form-control" name="skill_4" id="skill_4" placeholder="Interpersonal Skills " required>
         </div>
     </div>
     <br>
@@ -31,25 +31,25 @@
     <small>Mininum 2 achievements to be added*</small>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="achievement_1" placeholder="Achievements" required>
+            <input type="text" class="form-control" name="achievement_1" id="achievement_1" placeholder="Achievements" required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="achievement_2" placeholder="Achievements" required>
+            <input type="text" class="form-control" name="achievement_2" id="achievement_2" placeholder="Achievements" required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="achievement_3" placeholder="Achievements">
+            <input type="text" class="form-control" name="achievement_3" id="achievement_3" placeholder="Achievements" required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <input type="text" class="form-control" id="achievement_4" placeholder="Achievements">
+            <input type="text" class="form-control" name="achievement_4" id="achievement_4" placeholder="Achievements" required>
         </div>
     </div>
-    <a href="#" class="btn btn-outline-primary float-right my-3">Save and Proceed</a>
+    <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
 </form>
 
 {% endblock resume-form %}

@@ -3,27 +3,27 @@
 {% block resume-form %}
 
 <h2 class="mb-3">References</h2>
-<form>
+<form method="POST">
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="resume_reference_name">Name</label>
-            <input type="text" class="form-control" id="resume_reference_name" placeholder="Name" required>
+            <input type="text" class="form-control" name="resume_reference_name" id="resume_reference_name" placeholder="Name" required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="resume_reference_designation">Designation</label>
-            <input type="text" class="form-control" id="resume_reference_designation" placeholder="Designation" required>
+            <input type="text" class="form-control" name="resume_reference_designation" id="resume_reference_designation" placeholder="Designation" required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="resume_reference_organization">Organization</label>
-            <input type="text" class="form-control" id="resume_reference_organization" placeholder="Organization" required>
+            <input type="text" class="form-control" name="resume_reference_oranization" id="resume_reference_organization" placeholder="Organization" required>
         </div>
     </div>
-    <a href="#" class="btn btn-outline-primary float-right my-3">Save and Proceed</a>
+    <button type="submit" class="btn btn-outline-primary float-right my-3">Save</button>
 </form>
 
 {% endblock resume-form %}

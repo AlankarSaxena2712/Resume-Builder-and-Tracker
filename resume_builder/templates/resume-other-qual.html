@@ -3,42 +3,42 @@
 {% block resume-form %}
 
 <h2 class="mb-3">Diploma</h2>
-<form>
+<form method="POST">
 {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="university_diploma">University</label>
-            <input type="text" class="form-control" id="university_diploma" placeholder="University">
+            <input type="text" class="form-control" name="university_diploma" id="university_diploma" placeholder="University">
         </div>
         <div class="form-group col-md-3">
             <label for="passing_year_diploma">Passing Year</label>
-            <input type="text" class="form-control" id="passing_year_diploma" placeholder="Passing Year">
+            <input type="text" class="form-control" name="passing_year_diploma" id="passing_year_diploma" placeholder="Passing Year">
         </div>
         <div class="form-group col-md-3">
             <label for="percent_diploma">Percentage / CGPA</label>
-            <input type="text" class="form-control" id="percent_diploma" placeholder="Percentage/CGPA">
+            <input type="text" class="form-control" name="percent_diploma" id="percent_diploma" placeholder="Percentage/CGPA">
         </div>
     </div>
     <h2>Other Graduation</h2>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="graduation_course">Graduation Course</label>
-            <input type="text" class="form-control" id="graduation_course" placeholder="Graduation Course">
+            <input type="text" class="form-control" name="graduation_course" id="graduation_course" placeholder="Graduation Course">
         </div>
         <div class="form-group col-md-6">
             <label for="university_other_graduation">University</label>
-            <input type="text" class="form-control" id="university_other_graduation" placeholder="University">
+            <input type="text" class="form-control" name="university_other_graduation" id="university_other_graduation" placeholder="University">
         </div>
         <div class="form-group col-md-6">
             <label for="passing_year_other_graduation">Passing Year</label>
-            <input type="text" class="form-control" id="passing_year_other_graduation" placeholder="Passing Year">
+            <input type="text" class="form-control" name="passing_year_other_graduation" id="passing_year_other_graduation" placeholder="Passing Year">
         </div>
         <div class="form-group col-md-6">
             <label for="percent_other_graduation">Percentage / CGPA</label>
-            <input type="text" class="form-control" id="percent_other_graduation" placeholder="Percentage/CGPA">
+            <input type="text" class="form-control" name="percent_other_graduation" id="percent_other_graduation" placeholder="Percentage/CGPA">
         </div>
     </div>
-    <a href="#" class="btn btn-outline-primary float-right my-3">Save and Proceed</a>
+    <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
 </form>
 
 {% endblock resume-form %}

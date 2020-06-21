@@ -21,15 +21,15 @@ Builder
         <div class="col-1"></div>
             <div class="col-4 text-center">
                 <div class="btn-group-vertical" role="group">
-                    <a type="button" href="/resume-personal" class="btn btn-warning rounded-pill resume-nav">Personal Information</a><br>
-                    <a type="button" href="/resume-career" class="btn btn-warning rounded-pill resume-nav">Career Objective</a><br>
-                    <a type="button" href="/resume-tech-skills" class="btn btn-warning rounded-pill resume-nav">Technical Skills</a><br>
-                    <a type="button" href="/resume-academic" class="btn btn-warning rounded-pill resume-nav">Academic Credentials</a><br>
-                    <a type="button" href="/resume-other-qual" class="btn btn-warning rounded-pill resume-nav">Other Qualifications</a><br>
-                    <a type="button" href="/resume-train-certi" class="btn btn-warning rounded-pill resume-nav">Trainging & Certification</a><br>
-                    <a type="button" href="/resume-skills-achieve" class="btn btn-warning rounded-pill resume-nav">Skills & Achievements</a><br>
-                    <a type="button" href="/resume-co-curricular" class="btn btn-warning rounded-pill resume-nav">Co-Curricular Activities</a><br>
-                    <a type="button" href="/resume-references" class="btn btn-warning rounded-pill resume-nav">References</a>
+                    <a type="button" href="/resume/resume-personal" class="btn btn-warning rounded-pill resume-nav">Personal Information</a><br>
+                    <a type="button" href="/resume/resume-career" class="btn btn-warning rounded-pill resume-nav">Career Objective</a><br>
+                    <a type="button" href="/resume/resume-tech-skills" class="btn btn-warning rounded-pill resume-nav">Technical Skills</a><br>
+                    <a type="button" href="/resume/resume-academic" class="btn btn-warning rounded-pill resume-nav">Academic Credentials</a><br>
+                    <a type="button" href="/resume/resume-other-qual" class="btn btn-warning rounded-pill resume-nav">Other Qualifications</a><br>
+                    <a type="button" href="/resume/resume-train-certi" class="btn btn-warning rounded-pill resume-nav">Trainging & Certification</a><br>
+                    <a type="button" href="/resume/resume-skills-achieve" class="btn btn-warning rounded-pill resume-nav">Skills & Achievements</a><br>
+                    <a type="button" href="/resume/resume-co-curricular" class="btn btn-warning rounded-pill resume-nav">Co-Curricular Activities</a><br>
+                    <a type="button" href="/resume/resume-references" class="btn btn-warning rounded-pill resume-nav">References</a>
                 </div>
             </div>
         <div class="col-6">
@@ -46,3 +46,11 @@ Builder
 </div>
 
 {% endblock body %}
+
+{% block view_resume %}
+    <li class="nav-item active mx-4">
+        <a href="/resume/resume-print/" target="_blank" class="nav-link text-warning btn my-auto btn-outline-warning">
+            <h5 class="mb-1">View Your Resume</h5>
+        </a>
+    </li>
+{% endblock view_resume %}

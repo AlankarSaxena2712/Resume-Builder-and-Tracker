@@ -130,14 +130,15 @@
             size: auto;
             margin: 0;
 
-            a[href]:after {
+            /* a[href]:after {
                 content: none !important;
-            }
+            } */
         }
     </style>
 </head>
 
 <body>
+    {% load filter_tags %} {% for i in resume %}
     <div class="container">
         <div class="resume">
             <div class="info">
@@ -145,21 +146,21 @@
                     <tr>
                         <td width="50%">
                             <div class="main_info">
-                                <h2>Alankar Saxena</h2>
-                                <h4>BTech,CEIT</h4>
-                                <h4>Contact no:-8750859034</h4>
-                                <h4>Email:-alankar.18bci1037@abes.ac.in</h4>
-                                <h4>LinkedIn:-alankarsaxena2712</h4>
+                                <h2>{{ i.first_name }} {{ i.last_name }}</h2>
+                                <h4>{{ i.course }}, {{ i.branch }}</h4>
+                                <h4>Contact no&nbsp;: {{ i.phn_no }}</h4>
+                                <h4>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.email }}</h4>
+                                <h4>LinkedIn&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.linkedin_id }}</h4>
                             </div>
                         </td>
                         <td width="20%">
                             <div class="imageicon">
-                                <img src="https://resume.abes.ac.in/assets/images/ABESEC_logo.png" id="output" />
+                                <img src="/static/images/ABESEC_logo.png" id="output">
                             </div>
                         </td>
                         <td>
                             <div class="pic" style="padding-left: 10px;">
-                                <p style="text-align: center;"><br /><br />Photo</p>
+                                <p style="text-align: center;"><br><br>Photo</p>
                             </div>
                         </td>
                     </tr>
@@ -168,8 +169,7 @@
                     <h4>CAREER OBJECTIVE</h4>
                 </div>
                 <p class="text-justify">
-                    I want to achieve the highest goal which is achievable and also will
-                    work for the better working and performance of the organisation.
+                    {{ i.career_objective }}
                 </p>
                 <div class="career">
                     <h4>ACADEMIC CREDENTIALS</h4>
@@ -185,24 +185,42 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if i.graduation_course and i.university_other_graduation and i.passing_year_other_graduation and i.percent_other_graduation %}
+                                <tr>
+                                    <td scope="row">{{ i.graduation_course }}</td>
+                                    <td>{{ i.university_other_graduation }}</td>
+                                    <td>{{ i.passing_year_other_graduation }}</td>
+                                    <td>{{ i.percent_other_graduation }}</td>
+                                </tr>
+                            {% else %}
+                            {% endif %}
+                            {% if i.university_diploma and i.passing_year_diploma and i.percent_diploma %}
+                                <tr>
+                                    <td scope="row">Diploma</td>
+                                    <td>{{ i.university_diploma }}</td>
+                                    <td>{{ i.passing_year_diploma }}</td>
+                                    <td>{{ i.percent_diploma }}</td>
+                                </tr>
+                            {% else %}
+                            {% endif %}
                             <tr>
-                                <td scope="row">BTech</td>
-                                <td>AKTU</td>
-                                <td>2022</td>
-                                <td>7.80</td>
+                                <td scope="row">{{ i.course }}</td>
+                                <td>{{ i.university }}</td>
+                                <td>{{ i.passing_year }}</td>
+                                <td>{{ i.percent_academic }}</td>
                             </tr>
 
                             <tr>
                                 <td scope="row">Intermediate</td>
-                                <td>CBSE</td>
-                                <td>2018</td>
-                                <td>84.70</td>
+                                <td>{{ i.board_secondary_school }}</td>
+                                <td>{{ i.passing_year_secondary_school }}</td>
+                                <td>{{ i.percent_secondary_school }}</td>
                             </tr>
                             <tr>
                                 <td scope="row">High School</td>
-                                <td>CBSE</td>
-                                <td>2016</td>
-                                <td>8.8</td>
+                                <td>{{ i.board_high_school }}</td>
+                                <td>{{ i.passing_year_high_school }}</td>
+                                <td>{{ i.percent_high_school }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -214,52 +232,54 @@
 
                 <div class="list">
                     <ul>
-                        <li>python</li>
-                        <li>django</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>javascript</li>
-                        <li>word</li>
+                        {% with i.tech_skills|split:',' as tech_skills %}
+                            {% for skill in tech_skills %}
+                                <li>
+                                    {{ skill }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
                     </ul>
                 </div>
                 <div class="career">
-                    <h3>EXPERIENTIAL LEARNING (INTERNSHIP PROGRAM)</h3>
+                    <h4>EXPERIENTIAL LEARNING (INTERNSHIP PROGRAM)</h4>
                 </div>
                 <div class="list">
                     <ul>
-                        <li>Company Name &nbsp&nbsp&nbsp:- Edulicious</li>
                         <li>
-                            Project Title
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:- Website for
-                            Edulicious
+                            Company Name &nbsp&nbsp&nbsp: {{ i.internship_company_name }}
                         </li>
                         <li>
-                            Duration
-                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:-
-                            1 month
+                            Project Title &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ i.internship_project_title }}
+                        </li>
+                        <li>
+                            Duration &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ i.internship_duration }}
                         </li>
                     </ul>
                 </div>
-                <br><br><br><br><br>
+                <br /><br /><br /><br /><br />
                 <div class="career">
                     <h4>TRAINING & CERTIFICATION</h4>
                 </div>
                 <div class="list">
                     <ul>
-                        <li>Python Data Structures On Coursera</li>
-                        <li>HTML, CSS and JavaScript on Coursera</li>
-                        <li>Data Science Fundamentals on Coursera</li>
+                        {% with i.certificates|split:',' as certificates %}
+                            {% for certificate in certificates %}
+                                <li>
+                                    {{ certificate }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
                     </ul>
                 </div>
 
                 <div class="career">
-                    <h3>PROJECTS</h3>
+                    <h4>PROJECTS</h4>
                 </div>
                 <div class="list">
                     <ul>
                         <li>
-                            Edulicious is a startup by me and I have created the website for
-                            it on my own. You can see it on edulicious.herokuapp.com
+                            {{ i.internship_project_description }}
                         </li>
                     </ul>
                 </div>
@@ -269,8 +289,13 @@
                 </div>
                 <div class="list">
                     <ul>
-                        <li>Django</li>
-                        <li>Javascript</li>
+                        {% with i.interpersonal_skills|split:',' as interpersonal_skills %}
+                            {% for interpersonal_skill in interpersonal_skills %}
+                                <li>
+                                    {{ interpersonal_skill }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
                     </ul>
                 </div>
 
@@ -279,8 +304,13 @@
                 </div>
                 <div class="list">
                     <ul>
-                        <li>Created many sites using this python framework</li>
-                        <li>Created a clock, and a todolist and many other things</li>
+                        {% with i.achievements|split:',' as achievements %}
+                            {% for achievement in achievements %}
+                                <li>
+                                    {{ achievement }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
                     </ul>
                 </div>
                 <div class="career">
@@ -288,30 +318,37 @@
                 </div>
                 <div class="list">
                     <ul>
-                        <li>Taking tuitions</li>
-                        <li>Cricket</li>
-                        <li>Drawing</li>
+                        {% with i.co_curriculars|split:',' as co_curriculars %}
+                            {% for co_curricular in co_curriculars %}
+                                <li>
+                                    {{ co_curricular }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </div>
+                <div class="career">
+                    <h4>REFERENCES</h4>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li>
+                            Reference Name &nbsp;&nbsp;&nbsp; : {{ i.resume_reference_name }}
+                        </li>
+                        <li>
+                            Degisnation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.resume_reference_designation }}
+                        </li>
+                        <li>
+                            Organization &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.resume_reference_oraganization }}
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="list">
-                <ul>
-                    <li>
-                        Degisnation
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:-Data
-                        Ritz Technologies
-                    </li>
-                    <li>
-                        Location
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:-ABESEC,
-                        Ghaziabad
-                    </li>
-                </ul>
-            </div>
             <p>Place:________________</p>
-            <p>Date:________________</p>
+            <p>Date :________________</p>
         </div>
     </div>
+    {% endfor %}
     <div class="container">
         <center>
             <button onclick="CallPrint()" class="btn btn-primary my-2">

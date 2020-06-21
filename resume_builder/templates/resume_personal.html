@@ -17,74 +17,70 @@ Builder
 
 {% block resume-form %}
 
-                    <h2 class="mb-3">Personal Information</h2>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="first_name">First Name *</label>
-                                <input type="text" class="form-control" id="first_name" placeholder="First Name"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="last_name">Last Name *</label>
-                                <input type="text" class="form-control" id="last_name" placeholder="Last Name" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="adm_no">Admission Number *</label>
-                                <input type="text" class="form-control" id="adm_no" placeholder="Admission Number"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="email">Email *</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email Id" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="phn_no">Phone Number *</label>
-                                <input type="tel" class="form-control" id="phn_no" maxlength="10" minlength="10"
-                                    placeholder="Phone Number" required>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="linkedin_id">LinkedIn Id *</label>
-                                <input type="text" class="form-control" id="linkedin_id" placeholder="LinkedIn Id"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="address_1">Address Line 1 *</label>
-                                <input type="text" class="form-control" id="address_1" placeholder="Address Line 1"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="address_2">Address Line 2</label>
-                                <input type="text" class="form-control" id="address_2" placeholder="Address Line 2">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label for="State">State *</label>
-                                <input type="text" class="form-control" id="State" placeholder="State" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="City">City *</label>
-                                <input type="text" class="form-control" id="City" placeholder="City" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="Zip">Zip *</label>
-                                <input type="text" class="form-control" id="Zip" placeholder="Zip Code" maxlength="6" minlength="6" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="ml-2" for="resume_image">Choose File</label>
-                                <input type="file" name="" id="resume_image">
-                            </div>
-                        </div>
-                        <a href="#v-pills-cobjective-tab" class="btn btn-outline-primary float-right my-3">Save and
-                            Proceed</a>
-                    </form>
-               
+<h2 class="mb-3">Personal Information</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="first_name">First Name *</label>
+            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="last_name">Last Name *</label>
+            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="adm_no">Admission Number *</label>
+            <input type="text" class="form-control" name="adm_no" id="adm_no" placeholder="Admission Number" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email *</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email Id" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="phn_no">Phone Number *</label>
+            <input type="tel" class="form-control" name="phn_no" id="phn_no" maxlength="10" minlength="10" placeholder="Phone Number"
+                required>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="linkedin_id">LinkedIn Id *</label>
+            <input type="text" class="form-control" name="linkedin_id" id="linkedin_id" placeholder="LinkedIn Id" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="address_1">Address Line 1 *</label>
+            <input type="text" class="form-control" name="address_1" id="address_1" placeholder="Address Line 1" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="address_2">Address Line 2</label>
+            <input type="text" class="form-control" name="address_2" id="address_2" placeholder="Address Line 2">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="state">State *</label>
+            <input type="text" class="form-control" name="state" id="state" placeholder="State" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="city">City *</label>
+            <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="zip_code">Zip *</label>
+            <input type="text" class="form-control" name="zip_code" id="zip_code" placeholder="Zip Code" maxlength="6" minlength="6"
+                required>
+        </div>
+    </div>
+    <!-- <div class="form-row">
+        <div class="form-group">
+            <label class="ml-2" for="resume_image">Choose File</label>
+            <input type="file" name="" id="resume_image">
+        </div>
+    </div> -->
+    <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
+</form>
+
 {% endblock resume-form %}

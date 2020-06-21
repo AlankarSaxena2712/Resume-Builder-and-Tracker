@@ -6,10 +6,9 @@
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
-            <textarea class="form-control" id="resume_career_objective" placeholder="Career Objective" rows="3"></textarea>
+            <textarea class="form-control" name="resume_career_objective" id="resume_career_objective" placeholder="Career Objective" rows="3"></textarea>
         </div>
-        <a href="#" class="btn btn-outline-primary float-right my-3">Save and
-            Proceed</a>
+        <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
     </form>
 
 {% endblock resume-form %}
