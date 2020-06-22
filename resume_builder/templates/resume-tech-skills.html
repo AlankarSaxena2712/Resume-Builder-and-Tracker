@@ -1,6 +1,7 @@
 {% extends 'resume_base.html' %}
 
 {% block resume-form %}
+{% load filter_tags %}
 
 <h2 class="mb-3">Technical Skills</h2>
 <div>
@@ -12,24 +13,34 @@
 <form method="POST">
 {% csrf_token %}
     <div class="form-row">
-        <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="tech_skill_1" placeholder="Skill 1" required>
-        </div>
-        <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="tech_skill_2" placeholder="Skill 2" required>
-        </div>
-        <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="tech_skill_3" placeholder="Skill 3" required>
-        </div>
-        <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="tech_skill_4" placeholder="Skill 4" required>
-        </div>
-        <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="tech_skill_5" placeholder="Skill 5" required>
-        </div>
-        <div class="form-group col-md-4">
-            <input type="text" class="form-control" name="tech_skill_6" placeholder="Skill 6" required>
-        </div>
+        {% if user.resume_detail.tech_skills %}
+            {% with user.resume_detail.tech_skills|split:',' as tech_skills %}
+                {% for tech_skill in tech_skills %}
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" value="{{ tech_skill }}" name="tech_skill_{{ forloop.counter }}" id="tech_skill_{{ forloop.counter }}" placeholder="Technical Skills " required>
+                    </div>
+                {% endfor %}
+            {% endwith %}
+        {% else %}
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" name="tech_skill_1" placeholder="Technical Skill" required>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" name="tech_skill_2" placeholder="Technical Skill " required>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" name="tech_skill_3" placeholder="Technical Skill" required>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" name="tech_skill_4" placeholder="Technical Skill" required>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" name="tech_skill_5" placeholder="Technical Skill" required>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="text" class="form-control" name="tech_skill_6" placeholder="Technical Skill" required>
+            </div>
+        {% endif %}
     </div>
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
 </form>

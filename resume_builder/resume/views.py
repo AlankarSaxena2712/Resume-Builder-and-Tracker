@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 from .models import Resume_Detail
 
 # Create your views here.
@@ -10,19 +11,22 @@ def is_student(user):
 @user_passes_test(is_student, login_url = '/')
 @login_required
 def resume_personal(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES['photo']:
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         adm_no = request.POST.get('adm_no')
         email = request.POST.get('email')
         phn_no = request.POST.get('phn_no')
         linkedin_id = request.POST.get('linkedin_id')
-        address = request.POST.get('address_1') + " " + request.POST.get('address_2')
+        address = request.POST.get('address')
         state = request.POST.get('state')
         city = request.POST.get('city')
         zip_code = request.POST.get('zip_code')
+        photo = request.FILES['photo']
+
         if request.user.username == adm_no:
-            resume = Resume_Detail(
+            Resume_Detail.objects.filter(adm_no = request.user.username).update(
+                user_id = request.user.id,
                 first_name = first_name,
                 last_name = last_name,
                 adm_no = adm_no,
@@ -32,8 +36,9 @@ def resume_personal(request):
                 address = address,
                 state = state,
                 city = city,
-                zip_code = zip_code)
-            resume.save()
+                zip_code = zip_code,
+                photo = FileSystemStorage().save(photo.name, photo)
+            )
             messages.success(request, "Data saved successfully")
             return redirect('resume_career')
         else:
@@ -182,5 +187,4 @@ def resume_references(request):
 @user_passes_test(is_student, login_url = '/')
 @login_required
 def resume_print(request):
-    resume = Resume_Detail.objects.filter(adm_no = request.user.username)
-    return render(request, 'resume_format.html', {'resume':resume})
+    return render(request, 'resume_format.html')

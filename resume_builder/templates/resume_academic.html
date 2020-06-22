@@ -8,40 +8,75 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="course">Course *</label>
-            <select class="form-control" name="course" id="course" required>
-                <option value="">Choose...</option>
-                <option value="B. Tech">B. Tech</option>
-                <option value="M. Tech">M. Tech</option>
-                <option value="MCA">MCA</option>
-                <option value="MBA">MBA</option>
-            </select>
+            {% if user.resume_detail.course %}
+                <select class="form-control" name="course" id="course" required>
+                    <option value="{{ user.resume_detail.course }}">{{ user.resume_detail.course }}</option>
+                    <option value="B. Tech">B. Tech</option>
+                    <option value="M. Tech">M. Tech</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                </select>
+            {% else %}
+                <select class="form-control" name="course" id="course" required>
+                    <option value="">Choose...</option>
+                    <option value="B. Tech">B. Tech</option>
+                    <option value="M. Tech">M. Tech</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                </select>
+            {% endif %}
         </div>
         <div class="form-group col-md-6">
             <label for="branch">Branch *</label>
-            <select class="form-control" id="branch" name="branch" required>
-                <option value="">Choose...</option>
-                <option value="CSE">CSE</option>
-                <option value="IT">IT</option>
-                <option value="CEIT">CEIT</option>
-                <option value="CE">CE</option>
-                <option value="ME">ME</option>
-                <option value="EC">EC</option>
-                <option value="EN">EN</option>
-            </select>
+            {% if user.resume_detail.branch %}
+                <select class="form-control" id="branch" name="branch" required>
+                    <option value="{{user.resume_detail.branch }}">{{user.resume_detail.branch }}</option>
+                    <option value="CSE">CSE</option>
+                    <option value="IT">IT</option>
+                    <option value="CEIT">CEIT</option>
+                    <option value="CE">CE</option>
+                    <option value="ME">ME</option>
+                    <option value="EC">EC</option>
+                    <option value="EN">EN</option>
+                </select>
+            {% else %}
+                <select class="form-control" id="branch" name="branch" required>
+                    <option value="">Choose...</option>
+                    <option value="CSE">CSE</option>
+                    <option value="IT">IT</option>
+                    <option value="CEIT">CEIT</option>
+                    <option value="CE">CE</option>
+                    <option value="ME">ME</option>
+                    <option value="EC">EC</option>
+                    <option value="EN">EN</option>
+                </select>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="university">University *</label>
-            <input type="text" class="form-control" name="university" id="university" placeholder="University" required>
+            {% if user.resume_detail.university %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.university }}" name="university" id="university" placeholder="University" required>
+            {% else %}
+                <input type="text" class="form-control" name="university" id="university" placeholder="University" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="passing_year">Passing Year *</label>
-            <input type="text" class="form-control" name="passing_year" id="passing_year" placeholder="Passing Year" required>
+            {% if user.resume_detail.passing_year %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.passing_year }}" name="passing_year" id="passing_year" placeholder="Passing Year" required>
+            {% else %}
+                <input type="text" class="form-control" name="passing_year" id="passing_year" placeholder="Passing Year" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="percent_academic">Percentage / CGPA *</label>
-            <input type="text" class="form-control" name="percent_academic" id="percent_academic" placeholder="Percentage/CGPA" required>
+            {% if user.resume_detail.percent_academic %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.percent_academic }}" name="percent_academic" id="percent_academic" placeholder="Percentage/CGPA" required>
+            {% else %}
+                <input type="text" class="form-control" name="percent_academic" id="percent_academic" placeholder="Percentage/CGPA" required>
+            {% endif %}
         </div>
     </div>
     <hr>
@@ -49,30 +84,54 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="board_secondary_school">Board *</label>
-            <input type="text" class="form-control" name="board_secondary_school" id="board_secondary_school" placeholder="Board" required>
+            {% if user.resume_detail.board_secondary_school %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.board_secondary_school }}" name="board_secondary_school" id="board_secondary_school" placeholder="Board" required>
+            {% else %}
+                <input type="text" class="form-control" name="board_secondary_school" id="board_secondary_school" placeholder="Board" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="passing_year_secondary_school">Passing Year *</label>
-            <input type="text" class="form-control" name="passing_year_secondary_school" id="passing_year_secondary_school" placeholder="Passing Year" required>
+            {% if user.resume_detail.passing_year_secondary_school %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.passing_year_secondary_school }}" name="passing_year_secondary_school" id="passing_year_secondary_school" placeholder="Passing Year" required>
+            {% else %}
+                <input type="text" class="form-control" name="passing_year_secondary_school" id="passing_year_secondary_school" placeholder="Passing Year" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="percent_secondary_school">Percentage / CGPA *</label>
-            <input type="text" class="form-control" name="percent_secondary_school" id="percent_secondary_school" placeholder="Percentage/CGPA" required>
+            {% if user.resume_detail.percent_secondary_school %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.percent_secondary_school }}" name="percent_secondary_school" id="percent_secondary_school" placeholder="Percentage/CGPA" required>
+            {% else %}
+                <input type="text" class="form-control" name="percent_secondary_school" id="percent_secondary_school" placeholder="Percentage/CGPA" required>
+            {% endif %}
         </div>
     </div>
     <h3>High School</h3>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="board_high_school">Board *</label>
-            <input type="text" class="form-control" name="board_high_school" id="board_high_school" placeholder="Board" required>
+            {% if user.resume_detail.board_high_school %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.board_high_school }}" name="board_high_school" id="board_high_school" placeholder="Board" required>
+            {% else %}
+                <input type="text" class="form-control" name="board_high_school" id="board_high_school" placeholder="Board" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="passing_year_high_school">Passing Year *</label>
-            <input type="text" class="form-control" name="passing_year_high_school" id="passing_year_high_school" placeholder="Passing Year" required>
+            {% if user.resume_detail.passing_year_high_school %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.passing_year_high_school }}" name="passing_year_high_school" id="passing_year_high_school" placeholder="Passing Year" required>
+            {% else %}
+                <input type="text" class="form-control" name="passing_year_high_school" id="passing_year_high_school" placeholder="Passing Year" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="percent_high_school">Percentage / CGPA *</label>
-            <input type="text" class="form-control" name="percent_high_school" id="percent_high_school" placeholder="Percentage/CGPA" required>
+            {% if user.resume_detail.percent_high_school %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.percent_high_school }}" name="percent_high_school" id="percent_high_school" placeholder="Percentage/CGPA" required>
+            {% else %}
+                <input type="text" class="form-control" name="percent_high_school" id="percent_high_school" placeholder="Percentage/CGPA" required>
+            {% endif %}
         </div>
     </div>
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>

@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
 	<link rel="stylesheet" href="/static/css/style.css" />
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<title>
 		{% block title %}{% endblock title %} - Resume Buidler and Tracker
 	</title>
@@ -19,11 +21,9 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/">
-			<img src="https://resume.abes.ac.in/assets/images/logo-6.png" width="70" height="40"
-				class=" d-inline-block align-top img-fluid" alt="" loading="lazy">
-			<a href="/" class="text-warning h2 ml-4 d-inline-block" style="font-weight: bolder;">RESUME BUILDER AND
-				TRACKER</a></a>
+		<a class="navbar-brand text-warning ml-4 d-inline-block" href="/" style="font-weight: bolder;">
+			RESUME BUILDER AND TRACKER
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -155,10 +155,18 @@
 	{% block body %}
 	{% endblock body %}
 
+	<script>
+		$('#resume_image').on('change',function(){
+			var fileName = $(this).val();
+			$(this).next('.custom-file-label').html(fileName);
+		})
+	</script>
+
 	<footer style="background-color: black; height: 28px; margin-top: 15px;">
 		<div class="text-center" style="color: white;">
 			<span class="text-wrap">
-				©Copyright ABESEC- All right reserved. Made by Alankar Saxena</span>
+				Made by Alankar Saxena
+			</span>
 		</div>
 	</footer>
 

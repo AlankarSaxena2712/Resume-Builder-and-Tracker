@@ -1,37 +1,50 @@
 {% extends 'resume_base.html' %}
 
 {% block resume-form %}
+{% load filter_tags %}
 
 <h2 class="mb-3">Co-Curricular Activities</h2>
 <small>Mininum 2 activities to be added*</small>
 <form method="POST">
     {% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="co_curricular_1" id="co_curricular_1" placeholder="Co-Curricular Activites" required>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="co_curricular_2" id="co_curricular_2" placeholder="Co-Curricular Activites" required>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="co_curricular_3" id="co_curricular_3" placeholder="Co-Curricular Activites" required>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="co_curricular_4" id="co_curricular_4" placeholder="Co-Curricular Activites" required>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="co_curricular_5" id="co_curricular_5" placeholder="Co-Curricular Activites" required>
-        </div>
-    </div>
-    <button class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
+    {% if user.resume_detail.co_curriculars %}
+        {% with user.resume_detail.co_curriculars|split:',' as co_curriculars %}
+            {% for co_curricular in co_curriculars %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" value="{{ co_curricular }}" name="co_curricular_{{ forloop.counter }}" id="co_curricular_1" placeholder="Co-Curricular Activites" required>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endwith %}
+    {% else %}
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" name="co_curricular_1" id="co_curricular_1" placeholder="Co-Curricular Activites" required>
+                </div>
+            </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" name="co_curricular_2" id="co_curricular_2" placeholder="Co-Curricular Activites" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" name="co_curricular_3" id="co_curricular_3" placeholder="Co-Curricular Activites" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" name="co_curricular_4" id="co_curricular_4" placeholder="Co-Curricular Activites" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" name="co_curricular_5" id="co_curricular_5" placeholder="Co-Curricular Activites" required>
+                </div>
+            </div>
+        {% endif %}
+        <button class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
 </form>
 
 {% endblock resume-form %}

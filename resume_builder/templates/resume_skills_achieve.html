@@ -1,54 +1,79 @@
 {% extends 'resume_base.html' %}
 
 {% block resume-form %}
+{% load filter_tags %}
 
 <h2 class="mb-3">Your Interpersonal Skills</h2>
 <small>Mininum 2 skills to be added*</small>
 <form method="POST">
     {% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="skill_1" id="skill_1" placeholder="Interpersonal Skills " required>
+    {% if user.resume_detail.interpersonal_skills %}
+        {% with user.resume_detail.interpersonal_skills|split:',' as interpersonal_skills %}
+            {% for interpersonal_skill in interpersonal_skills %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" value="{{ interpersonal_skill }}" name="skill_{{ forloop.counter }}" id="skill_{{ forloop.counter }}" placeholder="Interpersonal Skills " required>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endwith %}
+    {% else %}
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="skill_1" id="skill_1" placeholder="Interpersonal Skills " required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="skill_2" id="skill_2" placeholder="Interpersonal Skills " required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="skill_2" id="skill_2" placeholder="Interpersonal Skills " required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="skill_3" id="skill_3" placeholder="Interpersonal Skills " required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="skill_3" id="skill_3" placeholder="Interpersonal Skills " required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="skill_4" id="skill_4" placeholder="Interpersonal Skills " required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="skill_4" id="skill_4" placeholder="Interpersonal Skills " required>
+            </div>
         </div>
-    </div>
+    {% endif %}
     <br>
     <h2 class="mb-3">Your Achievements</h2>
     <small>Mininum 2 achievements to be added*</small>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="achievement_1" id="achievement_1" placeholder="Achievements" required>
+    {% if user.resume_detail.achievements %}
+        {% with user.resume_detail.achievements|split:',' as achievements %}
+            {% for achievement in achievements %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" value="{{ achievement }}" name="achievement_{{ forloop.counter }}" id="achievement_{{ forloop.counter }}" placeholder="Achievements" required>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endwith %}
+    {% else %}
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="achievement_1" id="achievement_1" placeholder="Achievements" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="achievement_2" id="achievement_2" placeholder="Achievements" required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="achievement_2" id="achievement_2" placeholder="Achievements" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="achievement_3" id="achievement_3" placeholder="Achievements" required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="achievement_3" id="achievement_3" placeholder="Achievements" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="achievement_4" id="achievement_4" placeholder="Achievements" required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="achievement_4" id="achievement_4" placeholder="Achievements" required>
+            </div>
         </div>
-    </div>
+    {% endif %}
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
 </form>
 

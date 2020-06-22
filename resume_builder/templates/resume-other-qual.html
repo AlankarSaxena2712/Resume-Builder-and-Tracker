@@ -8,34 +8,62 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="university_diploma">University</label>
-            <input type="text" class="form-control" name="university_diploma" id="university_diploma" placeholder="University">
+            {% if user.resume_detail.university_diploma %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.university_diploma }}" name="university_diploma" id="university_diploma" placeholder="University">
+            {% else %}
+                <input type="text" class="form-control" name="university_diploma" id="university_diploma" placeholder="University">
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="passing_year_diploma">Passing Year</label>
-            <input type="text" class="form-control" name="passing_year_diploma" id="passing_year_diploma" placeholder="Passing Year">
+            {% if user.resume_detail.passing_year_diploma %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.passing_year_diploma }}" name="passing_year_diploma" id="passing_year_diploma" placeholder="Passing Year">
+            {% else %}
+                <input type="text" class="form-control" name="passing_year_diploma" id="passing_year_diploma" placeholder="Passing Year">
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="percent_diploma">Percentage / CGPA</label>
-            <input type="text" class="form-control" name="percent_diploma" id="percent_diploma" placeholder="Percentage/CGPA">
+            {% if user.resume_detail.percent_diploma %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.percent_diploma }}" name="percent_diploma" id="percent_diploma" placeholder="Percentage/CGPA">
+            {% else %}
+                <input type="text" class="form-control" name="percent_diploma" id="percent_diploma" placeholder="Percentage/CGPA">
+            {% endif %}
         </div>
     </div>
     <h2>Other Graduation</h2>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="graduation_course">Graduation Course</label>
-            <input type="text" class="form-control" name="graduation_course" id="graduation_course" placeholder="Graduation Course">
+            {% if user.resume_detail.graduation_course %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.graduation_course }}" name="graduation_course" id="graduation_course" placeholder="Graduation Course">
+            {% else %}
+                <input type="text" class="form-control" name="graduation_course" id="graduation_course" placeholder="Graduation Course">
+            {% endif %}
         </div>
         <div class="form-group col-md-6">
             <label for="university_other_graduation">University</label>
-            <input type="text" class="form-control" name="university_other_graduation" id="university_other_graduation" placeholder="University">
+            {% if user.resume_detail.university_other_graduation %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.university_other_graduation }}" name="university_other_graduation" id="university_other_graduation" placeholder="University">
+            {% else %}
+                <input type="text" class="form-control" name="university_other_graduation" id="university_other_graduation" placeholder="University">
+            {% endif %}
         </div>
         <div class="form-group col-md-6">
             <label for="passing_year_other_graduation">Passing Year</label>
-            <input type="text" class="form-control" name="passing_year_other_graduation" id="passing_year_other_graduation" placeholder="Passing Year">
+            {% if user.resume_detail.passing_year_other_graduation %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.passing_year_other_graduation }}" name="passing_year_other_graduation" id="passing_year_other_graduation" placeholder="Passing Year">
+            {% else %}
+                <input type="text" class="form-control" name="passing_year_other_graduation" id="passing_year_other_graduation" placeholder="Passing Year">
+            {% endif %}
         </div>
         <div class="form-group col-md-6">
             <label for="percent_other_graduation">Percentage / CGPA</label>
-            <input type="text" class="form-control" name="percent_other_graduation" id="percent_other_graduation" placeholder="Percentage/CGPA">
+            {% if user.resume_diploma.percent_other_graduation %}
+                <input type="text" class="form-control" value="{{ user.resume_diploma.percent_other_graduation }}" name="percent_other_graduation" id="percent_other_graduation" placeholder="Percentage/CGPA">
+            {% else %}
+                <input type="text" class="form-control" name="percent_other_graduation" id="percent_other_graduation" placeholder="Percentage/CGPA">
+            {% endif %}
         </div>
     </div>
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>

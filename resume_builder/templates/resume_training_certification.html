@@ -6,50 +6,78 @@
 <small>Mininum 2 certificates to be added*</small>
 <form method="POST">
 {% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="certificate_1" id="certificate_1" placeholder="Certificate Description" required>
+    {% if user.resume_detail.certificates %}
+        {% with user.resume_detail.certificates|split:',' as certificates %}
+            {% for certificate in certificates %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" value="{{ certificate }}" name="certificate_{{ forloop.counter }}" id="certificate_{{ forloop.counter }}" placeholder="Certificate Description" required>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endwith %}
+    {% else %}
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="certificate_1" id="certificate_1" placeholder="Certificate Description" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="certificate_2" id="certificate_2" placeholder="Certificate Description" required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="certificate_2" id="certificate_2" placeholder="Certificate Description" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="certificate_3" id="certificate_3" placeholder="Certificate Description" required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="certificate_3" id="certificate_3" placeholder="Certificate Description" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <input type="text" class="form-control" name="certificate_4" id="certificate_4" placeholder="Certificate Description" required>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control" name="certificate_4" id="certificate_4" placeholder="Certificate Description" required>
+            </div>
         </div>
-    </div>
+    {% endif %}
     <br>
     <h2>Your Internship Details</h2>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="internship_company_name">Company Name</label>
-            <input type="text" class="form-control" name="internship_company_name" id="internship_company_name" placeholder="Company Name" required>
+            {% if user.resume_detail.internship_company %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.internship_company }}" name="internship_company_name" id="internship_company_name" placeholder="Company Name" required>
+            {% else %}
+                <input type="text" class="form-control" name="internship_company_name" id="internship_company_name" placeholder="Company Name" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="internship_project_title">Project Title</label>
-            <input type="text" class="form-control" name="internship_project_title" id="internship_project_title" placeholder="Project Title" required>
+            {% if user.resume_detail.internship_project_title %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.internship_project_title }}" name="internship_project_title" id="internship_project_title" placeholder="Project Title" required>
+            {% else %}
+                <input type="text" class="form-control" name="internship_project_title" id="internship_project_title" placeholder="Project Title" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="internship_duration">Duration <small>(In Months)</small></label>
-            <input type="text" class="form-control" name="internship_duration" id="internship_duration" placeholder="Duration" required>
+            {% if user.resume_detail.internship_duration %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.internship_duration }}" name="internship_duration" id="internship_duration" placeholder="Duration" required>
+            {% else %}
+                <input type="text" class="form-control" name="internship_duration" id="internship_duration" placeholder="Duration" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="internship_project_description">Project Description <small>(Max 200 characters)</small></label>
-            <textarea type="text" class="form-control" name="internship_project_duration" id="internship_project_description" rows="3" maxlength="200" placeholder="Project Description" required></textarea>
+            {% if user.resume_detail.internship_project_description %}
+                <textarea type="text" class="form-control" value="{{ user.resume_detail.internship_project_description }}" name="internship_project_description" id="internship_project_description" rows="3" maxlength="200" placeholder="Project Description" required></textarea>
+            {% else %}
+                <textarea type="text" class="form-control" name="internship_project_description" id="internship_project_description" rows="3" maxlength="200" placeholder="Project Description" required></textarea>
+            {% endif %}
         </div>
     </div>
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>

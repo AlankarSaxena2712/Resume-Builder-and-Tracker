@@ -18,68 +18,109 @@ Builder
 {% block resume-form %}
 
 <h2 class="mb-3">Personal Information</h2>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="first_name">First Name *</label>
-            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" required>
+            {% if user.resume_detail.first_name %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.first_name }}" name="first_name" id="first_name" placeholder="First Name" required>
+            {% else %}
+                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-4">
             <label for="last_name">Last Name *</label>
-            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" required>
+            {% if user.resume_detail.last_name %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.last_name }}" name="last_name" id="last_name" placeholder="Last Name" required>
+            {% else %}
+                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-4">
             <label for="adm_no">Admission Number *</label>
-            <input type="text" class="form-control" name="adm_no" id="adm_no" placeholder="Admission Number" required>
+            {% if user.resume_detail.adm_no %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.adm_no }}" name="adm_no" id="adm_no" placeholder="Admission Number" required>
+            {% else %}
+                <input type="text" class="form-control" name="adm_no" id="adm_no" placeholder="Admission Number" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-5">
             <label for="email">Email *</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email Id" required>
+            {% if user.resume_detail.email %}
+                <input type="email" class="form-control" value="{{ user.resume_detail.email }}" name="email" id="email" placeholder="Email Id" required>
+            {% else %}
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email Id" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-3">
             <label for="phn_no">Phone Number *</label>
-            <input type="tel" class="form-control" name="phn_no" id="phn_no" maxlength="10" minlength="10" placeholder="Phone Number"
+            {% if user.resume_detail.phn_no %}
+                <input type="tel" class="form-control" value="{{ user.resume_detail.phn_no }}" name="phn_no" id="phn_no" maxlength="10" minlength="10" placeholder="Phone Number"
+            {% else %}
+                <input type="tel" class="form-control" name="phn_no" id="phn_no" maxlength="10" minlength="10" placeholder="Phone Number"
+            {% endif %}
                 required>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label for="linkedin_id">LinkedIn Id *</label>
-            <input type="text" class="form-control" name="linkedin_id" id="linkedin_id" placeholder="LinkedIn Id" required>
+            {% if user.resume_detail.linkedin_id %}
+                <input type="text" class="form-control" value={{ user.resume_detail.linkedin_id }} name="linkedin_id" id="linkedin_id" placeholder="LinkedIn Id" required>
+            {% else %}
+                <input type="text" class="form-control" name="linkedin_id" id="linkedin_id" placeholder="LinkedIn Id" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="address_1">Address Line 1 *</label>
-            <input type="text" class="form-control" name="address_1" id="address_1" placeholder="Address Line 1" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="address_2">Address Line 2</label>
-            <input type="text" class="form-control" name="address_2" id="address_2" placeholder="Address Line 2">
+        <div class="form-group col-md-12">
+            <label for="address">Address *</label>
+            {% if user.resume_detail.address %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.address }}" name="address" id="address" placeholder="Address Line 1" required>
+            {% else %}
+                <input type="text" class="form-control" name="address" id="address" placeholder="Address Line 1" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="state">State *</label>
-            <input type="text" class="form-control" name="state" id="state" placeholder="State" required>
+            {% if user.resume_detail.state %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.state }}" name="state" id="state" placeholder="State" required>
+            {% else %}
+                <input type="text" class="form-control" name="state" id="state" placeholder="State" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-4">
             <label for="city">City *</label>
-            <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+            {% if user.resume_detail.city %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.city }}" name="city" id="city" placeholder="City" required>
+            {% else %}
+                <input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+            {% endif %}
         </div>
         <div class="form-group col-md-4">
             <label for="zip_code">Zip *</label>
-            <input type="text" class="form-control" name="zip_code" id="zip_code" placeholder="Zip Code" maxlength="6" minlength="6"
-                required>
+            {% if user.resume_detail.zip_code %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.zip_code }}" name="zip_code" id="zip_code" placeholder="Zip Code" maxlength="6" minlength="6" required>
+            {% else %}
+                <input type="text" class="form-control" name="zip_code" id="zip_code" placeholder="Zip Code" maxlength="6" minlength="6" required>
+            {% endif %}
         </div>
     </div>
-    <!-- <div class="form-row">
-        <div class="form-group">
-            <label class="ml-2" for="resume_image">Choose File</label>
-            <input type="file" name="" id="resume_image">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <div class="custom-file">
+                    <input type="file" name="photo" class="custom-file-input" id="resume_image">
+                {% if user.resume_detail.photo %}
+                    <label class="custom-file-label" for="resume_image" required>{{ user.resume_detail.photo }}</label>
+                {% else %}
+                    <label class="custom-file-label" for="resume_image" required>Choose Image</label>
+                {% endif %}
+            </div>
         </div>
-    </div> -->
+    </div>
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
 </form>
 

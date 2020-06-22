@@ -138,29 +138,24 @@
 </head>
 
 <body>
-    {% load filter_tags %} {% for i in resume %}
+    {% load filter_tags %}
     <div class="container">
         <div class="resume">
             <div class="info">
                 <table class="x" style="border: 0; width: 100%; padding: 0px;">
                     <tr>
-                        <td width="50%">
+                        <td width="70%">
                             <div class="main_info">
-                                <h2>{{ i.first_name }} {{ i.last_name }}</h2>
-                                <h4>{{ i.course }}, {{ i.branch }}</h4>
-                                <h4>Contact no&nbsp;: {{ i.phn_no }}</h4>
-                                <h4>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.email }}</h4>
-                                <h4>LinkedIn&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.linkedin_id }}</h4>
-                            </div>
-                        </td>
-                        <td width="20%">
-                            <div class="imageicon">
-                                <img src="/static/images/ABESEC_logo.png" id="output">
+                                <h2>{{ user.resume_detail.first_name }} {{ user.resume_detail.last_name }}</h2>
+                                <h4>{{ user.resume_detail.course }}, {{ user.resume_detail.branch }}</h4>
+                                <h4>Contact no&nbsp;: {{ user.resume_detail.phn_no }}</h4>
+                                <h4>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ user.resume_detail.email }}</h4>
+                                <h4>LinkedIn&nbsp;&nbsp;&nbsp;&nbsp;: {{ user.resume_detail.linkedin_id }}</h4>
                             </div>
                         </td>
                         <td>
                             <div class="pic" style="padding-left: 10px;">
-                                <p style="text-align: center;"><br><br>Photo</p>
+                                <img src="{{ user.resume_detail.photo.url }}" style="max-height: 150px; max-width: 150px;"  alt="Image">
                             </div>
                         </td>
                     </tr>
@@ -169,7 +164,7 @@
                     <h4>CAREER OBJECTIVE</h4>
                 </div>
                 <p class="text-justify">
-                    {{ i.career_objective }}
+                    {{ user.resume_detail.career_objective }}
                 </p>
                 <div class="career">
                     <h4>ACADEMIC CREDENTIALS</h4>
@@ -185,42 +180,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% if i.graduation_course and i.university_other_graduation and i.passing_year_other_graduation and i.percent_other_graduation %}
+                            {% if user.resume_detail.graduation_course and user.resume_detail.university_other_graduation and user.resume_detail.passing_year_other_graduation and user.resume_detail.percent_other_graduation %}
                                 <tr>
-                                    <td scope="row">{{ i.graduation_course }}</td>
-                                    <td>{{ i.university_other_graduation }}</td>
-                                    <td>{{ i.passing_year_other_graduation }}</td>
-                                    <td>{{ i.percent_other_graduation }}</td>
+                                    <td scope="row">{{ user.resume_detail.graduation_course }}</td>
+                                    <td>{{ user.resume_detail.university_other_graduation }}</td>
+                                    <td>{{ user.resume_detail.passing_year_other_graduation }}</td>
+                                    <td>{{ user.resume_detail.percent_other_graduation }}</td>
                                 </tr>
                             {% else %}
                             {% endif %}
-                            {% if i.university_diploma and i.passing_year_diploma and i.percent_diploma %}
+                            {% if user.resume_detail.university_diploma and user.resume_detail.passing_year_diploma and user.resume_detail.percent_diploma %}
                                 <tr>
                                     <td scope="row">Diploma</td>
-                                    <td>{{ i.university_diploma }}</td>
-                                    <td>{{ i.passing_year_diploma }}</td>
-                                    <td>{{ i.percent_diploma }}</td>
+                                    <td>{{ user.resume_detail.university_diploma }}</td>
+                                    <td>{{ user.resume_detail.passing_year_diploma }}</td>
+                                    <td>{{ user.resume_detail.percent_diploma }}</td>
                                 </tr>
                             {% else %}
                             {% endif %}
                             <tr>
-                                <td scope="row">{{ i.course }}</td>
-                                <td>{{ i.university }}</td>
-                                <td>{{ i.passing_year }}</td>
-                                <td>{{ i.percent_academic }}</td>
+                                <td scope="row">{{ user.resume_detail.course }}</td>
+                                <td>{{ user.resume_detail.university }}</td>
+                                <td>{{ user.resume_detail.passing_year }}</td>
+                                <td>{{ user.resume_detail.percent_academic }}</td>
                             </tr>
 
                             <tr>
                                 <td scope="row">Intermediate</td>
-                                <td>{{ i.board_secondary_school }}</td>
-                                <td>{{ i.passing_year_secondary_school }}</td>
-                                <td>{{ i.percent_secondary_school }}</td>
+                                <td>{{ user.resume_detail.board_secondary_school }}</td>
+                                <td>{{ user.resume_detail.passing_year_secondary_school }}</td>
+                                <td>{{ user.resume_detail.percent_secondary_school }}</td>
                             </tr>
                             <tr>
                                 <td scope="row">High School</td>
-                                <td>{{ i.board_high_school }}</td>
-                                <td>{{ i.passing_year_high_school }}</td>
-                                <td>{{ i.percent_high_school }}</td>
+                                <td>{{ user.resume_detail.board_high_school }}</td>
+                                <td>{{ user.resume_detail.passing_year_high_school }}</td>
+                                <td>{{ user.resume_detail.percent_high_school }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -232,7 +227,7 @@
 
                 <div class="list">
                     <ul>
-                        {% with i.tech_skills|split:',' as tech_skills %}
+                        {% with user.resume_detail.tech_skills|split:',' as tech_skills %}
                             {% for skill in tech_skills %}
                                 <li>
                                     {{ skill }}
@@ -247,23 +242,23 @@
                 <div class="list">
                     <ul>
                         <li>
-                            Company Name &nbsp&nbsp&nbsp: {{ i.internship_company_name }}
+                            Company Name &nbsp&nbsp&nbsp: {{ user.resume_detail.internship_company_name }}
                         </li>
                         <li>
-                            Project Title &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ i.internship_project_title }}
+                            Project Title &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ user.resume_detail.internship_project_title }}
                         </li>
                         <li>
-                            Duration &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ i.internship_duration }}
+                            Duration &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ user.resume_detail.internship_duration }}
                         </li>
                     </ul>
                 </div>
-                <br /><br /><br /><br /><br />
+                <br><br><br><br><br>
                 <div class="career">
                     <h4>TRAINING & CERTIFICATION</h4>
                 </div>
                 <div class="list">
                     <ul>
-                        {% with i.certificates|split:',' as certificates %}
+                        {% with user.resume_detail.certificates|split:',' as certificates %}
                             {% for certificate in certificates %}
                                 <li>
                                     {{ certificate }}
@@ -279,7 +274,7 @@
                 <div class="list">
                     <ul>
                         <li>
-                            {{ i.internship_project_description }}
+                            {{ user.resume_detail.internship_project_description }}
                         </li>
                     </ul>
                 </div>
@@ -289,7 +284,7 @@
                 </div>
                 <div class="list">
                     <ul>
-                        {% with i.interpersonal_skills|split:',' as interpersonal_skills %}
+                        {% with user.resume_detail.interpersonal_skills|split:',' as interpersonal_skills %}
                             {% for interpersonal_skill in interpersonal_skills %}
                                 <li>
                                     {{ interpersonal_skill }}
@@ -304,7 +299,7 @@
                 </div>
                 <div class="list">
                     <ul>
-                        {% with i.achievements|split:',' as achievements %}
+                        {% with user.resume_detail.achievements|split:',' as achievements %}
                             {% for achievement in achievements %}
                                 <li>
                                     {{ achievement }}
@@ -316,9 +311,9 @@
                 <div class="career">
                     <h4>EXTRA/CO-CURRICULAR ACTIVITIES</h4>
                 </div>
-                <div class="list">
+                <div class="list"> 
                     <ul>
-                        {% with i.co_curriculars|split:',' as co_curriculars %}
+                        {% with user.resume_detail.co_curriculars|split:',' as co_curriculars %}
                             {% for co_curricular in co_curriculars %}
                                 <li>
                                     {{ co_curricular }}
@@ -333,13 +328,13 @@
                 <div class="list">
                     <ul>
                         <li>
-                            Reference Name &nbsp;&nbsp;&nbsp; : {{ i.resume_reference_name }}
+                            Reference Name &nbsp;&nbsp;&nbsp; : {{ user.resume_detail.resume_reference_name }}
                         </li>
                         <li>
-                            Degisnation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.resume_reference_designation }}
+                            Degisnation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ user.resume_detail.resume_reference_designation }}
                         </li>
                         <li>
-                            Organization &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ i.resume_reference_oraganization }}
+                            Organization &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ user.resume_detail.resume_reference_organization }}
                         </li>
                     </ul>
                 </div>
@@ -348,7 +343,6 @@
             <p>Date :________________</p>
         </div>
     </div>
-    {% endfor %}
     <div class="container">
         <center>
             <button onclick="CallPrint()" class="btn btn-primary my-2">

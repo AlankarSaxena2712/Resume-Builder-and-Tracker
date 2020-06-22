@@ -7,20 +7,32 @@
     {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="resume_reference_name">Name</label>
-            <input type="text" class="form-control" name="resume_reference_name" id="resume_reference_name" placeholder="Name" required>
+            <label for="resume_reference_name">Name *</label>
+            {% if user.resume_detail.resume_reference_name %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.resume_reference_name }}" name="resume_reference_name" id="resume_reference_name" placeholder="Name" required>
+            {% else %}
+                <input type="text" class="form-control" name="resume_reference_name" id="resume_reference_name" placeholder="Name" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="resume_reference_designation">Designation</label>
-            <input type="text" class="form-control" name="resume_reference_designation" id="resume_reference_designation" placeholder="Designation" required>
+            <label for="resume_reference_designation">Designation *</label>
+            {% if user.resume_detail.resume_reference_designation %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.resume_reference_designation }}" name="resume_reference_designation" id="resume_reference_designation" placeholder="Designation" required>
+            {% else %}
+                <input type="text" class="form-control" name="resume_reference_designation" id="resume_reference_designation" placeholder="Designation" required>
+            {% endif %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="resume_reference_organization">Organization</label>
-            <input type="text" class="form-control" name="resume_reference_oranization" id="resume_reference_organization" placeholder="Organization" required>
+            <label for="resume_reference_organization">Organization *</label>
+            {% if user.resume_detail.resume_reference_organization %}
+                <input type="text" class="form-control" value="{{ user.resume_detail.resume_reference_organization }}" name="resume_reference_organization" id="resume_reference_organization" placeholder="Organization" required>
+            {% else %}
+                <input type="text" class="form-control" name="resume_reference_organization" id="resume_reference_organization" placeholder="Organization" required>
+            {% endif %}
         </div>
     </div>
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save</button>

@@ -6,7 +6,11 @@
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
-            <textarea class="form-control" name="resume_career_objective" id="resume_career_objective" placeholder="Career Objective" rows="3"></textarea>
+            {% if user.resume_detail.career_objective %}
+                <textarea class="form-control" value="{{ user.resume_detail.career_objective }}" name="resume_career_objective" id="resume_career_objective" placeholder="Career Objective" rows="3"></textarea>
+            {% else %}
+                <textarea class="form-control" name="resume_career_objective" id="resume_career_objective" placeholder="Career Objective" rows="3"></textarea>
+            {% endif %}
         </div>
         <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
     </form>
