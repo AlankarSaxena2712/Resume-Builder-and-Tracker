@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Resumes
+{% endblock title %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block body %}
+{% load filter_tags %}
+<div class="container mt-4">
+	<div class="row my-3 text-primary h3">
+		<div class="col-md-12">
+			<span class="text-center">
+				Companies coming to your campus for placement
+			</span>
+		</div>
+	</div>
+    <div class="row my-4">
+		{% for company in companies %}
+			<div class="col-md-6">
+				<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col-8 p-4 d-flex flex-column position-static">
+						<h3 class="mb-0">
+							{{ company.company_name }}
+						</h3>
+						<strong class="d-inline-block mb-2 text-primary">
+							{% if company.branch_cse %} CSE {% endif %}
+							{% if company.branch_ceit %} CEIT {% endif %}
+							{% if company.branch_it %} IT {% endif %}
+							{% if company.branch_ec %} EC {% endif %}
+							{% if company.branch_en %} EN {% endif %}
+							{% if company.branch_me %} ME {% endif %}
+							{% if company.branch_ce %} CE {% endif %}
+							{% if company.branch_mca %} MCA {% endif %}
+							{% if company.branch_mba %} MBA {% endif %}
+						</strong>
+						<p class="card-text mb-auto h5 text-success">
+							{{ company.job_description }}
+						</p>
+						<p class="card-text mb-auto ml-4">
+							{{ company.company_location }}
+						</p>
+					</div>
+					<div class="col-4 p-4 mt-3 d-flex flex-column position-static">
+						<form method="POST" id="apply_form" action="/resume/company-list/{{ company.company_id }}/">
+							{% csrf_token %}
+							{% if company.students_applied != request.user.resume_detail.first_name %}
+								{% with company.students_applied|split:',' as students_applied %}
+									{% if request.user.resume_detail.first_name in students_applied %}
+										<button type="submit" id="apply_button" class="stretched-link btn mt-3 btn-outline-primary float-right">
+											<i class="fa fa-check-square-o" aria-hidden="true"></i> Applied
+										</button>
+									{% else %}
+										<button type="submit" id="apply_button" class="stretched-link btn mt-3 btn-outline-primary float-right">
+											Apply
+										</button>
+									{% endif %}
+								{% endwith %}
+							{% else %}
+								<button type="submit" id="apply_button" class="stretched-link btn mt-3 btn-outline-primary float-right">
+									Apply
+								</button>
+							{% endif %}
+						</form>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock body %}
+
+{% block student_home %}
+	<a href="/resume" class="btn nav-link btn-warning btn-sm">Student Home</a>
+{% endblock student_home %}

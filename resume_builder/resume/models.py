@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
 
 # Create your models here.
 class Resume_Detail(models.Model):
@@ -16,7 +15,6 @@ class Resume_Detail(models.Model):
     state = models.CharField(max_length = 20, default = '')
     city = models.CharField(max_length = 20, default = '')
     zip_code = models.CharField(max_length = 8, default = '')
-    photo = models.ImageField(upload_to = "resume_profile_pics", default = '')
     career_objective = models.TextField(max_length = 300, null=True)
     tech_skills = models.CharField(max_length = 220)
     course = models.CharField(max_length = 10)
@@ -32,11 +30,11 @@ class Resume_Detail(models.Model):
     percent_high_school = models.FloatField(null = True)
     university_diploma = models.CharField(max_length = 50)
     passing_year_diploma = models.CharField(max_length = 6)
-    percent_diploma = models.FloatField(null = True)
+    percent_diploma = models.FloatField(null = True, blank =True, default = None) 
     graduation_course = models.CharField(max_length = 20)
     university_other_graduation = models.CharField(max_length = 20)
     passing_year_other_graduation = models.CharField(max_length = 6)
-    percent_other_graduation = models.FloatField(null = True)
+    percent_other_graduation = models.FloatField(null = True, default = 0.0)
     certificates = models.CharField(max_length = 400)
     internship_company_name = models.CharField(max_length = 50)
     internship_project_title = models.CharField(max_length = 50)
@@ -51,14 +49,3 @@ class Resume_Detail(models.Model):
 
     def __str__(self):
         return self.first_name + " " + self.last_name
-
-    # def save(self):
-    #     super().save()
-
-    #     img = Image.open(self.photo.path)
-
-    #     if img.height > 300 or img.height > 300:
-    #         output_size = (300, 300)
-    #         img.thumbnail(output_size)
-    #         img.save(self.photo.path)
-    

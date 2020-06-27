@@ -1,0 +1,170 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Company
+{% endblock title %}
+
+{% block body %}
+{% load filter_tags %}
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="display-4 text-bolder text-dark text-center">
+                    <strong>Company Home</strong>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="row">
+            <div class="col-6">
+                <a class="btn btn-warning border btn-lg rounded-border" data-toggle="modal" data-target="#company_information_modal">Enter/Edit Company Information</a>
+            </div>
+            <div class="col-6">
+                <a href="/company/resumes" class="btn btn-warning border btn-lg rounded-border float-right">&nbsp&nbsp&nbsp&nbsp View All Resumes &nbsp&nbsp&nbsp&nbsp</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="company_information_modal" tabindex="-1" role="dialog" aria-labelledby="company_information_modal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header bg-warning">
+					<h5 class="modal-title" id="company_information_modaltitle">Company Information</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form method="POST" action="/company/company_information/">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="company_name">Company Name</label>
+                            {% if user.company_coming.company_name == user.username %}
+							    <input type="text" class="form-control" placeholder="Company Name" value="{{ user.company_coming.company_name }}" required name="company_name" id="company_name">
+                            {% else %}
+							    <input type="text" class="form-control" placeholder="Company Name" required name="company_name" id="company_name">
+                            {% endif %}
+                        </div> 
+                        <div class="form-group">
+                            <label for="job_description">Job Description</label>
+                            {% if user.company_coming.job_description %}
+                                <input type="text" class="form-control" value="{{ user.company_coming.job_description }}" name="job_description" required placeholder="Job Description" id="job_description">
+                            {% else %}
+                                <input type="text" class="form-control" name="job_description" id="job_description" required placeholder="Job Description">
+                            {% endif %}
+                        </div>
+						<div class="form-group">
+							<label for="company_location">Company Location</label>
+                            {% if user.company_coming.company_location %}
+							    <input type="text" class="form-control" value="{{ user.company_coming.company_location }}" placeholder="Company Location" required name="company_location" id="company_location">
+                            {% else %}
+							    <input type="text" class="form-control" required name="company_location" placeholder="Company Location" id="company_location">
+                            {% endif %}
+                        </div>
+                        <label for="">Branches which can apply</label>
+                        <div class="form-row">
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_cse %}
+                                        <input type="checkbox" class="custom-control-input" checked="true" value="CSE" name="cse" id="cse">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="CSE" name="cse" id="cse">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="cse">CSE</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_ceit %}
+                                        <input type="checkbox" checked class="custom-control-input" value="CEIT" name="ceit" id="ceit">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="CEIT" name="ceit" id="ceit">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="ceit">CEIT</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_it %}
+                                        <input type="checkbox" checked class="custom-control-input" value="IT" name="it" id="it">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="IT" name="it" id="it">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="it">IT</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_ec %}
+                                        <input type="checkbox" checked class="custom-control-input" value="EC" name="ec" id="ec">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="EC" name="ec" id="ec">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="ec">EC</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_en %}
+                                        <input type="checkbox" checked class="custom-control-input" value="EN" name="en" id="en">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="EN" name="en" id="en">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="en">EN</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_me %}
+                                        <input type="checkbox" checked class="custom-control-input" value="ME" name="me" id="me">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="ME" name="me" id="me">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="me">ME</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_ce %}
+                                        <input type="checkbox" checked class="custom-control-input" value="CE" name="ce" id="ce">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="CE" name="ce" id="ce">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="ce">CE</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_mca %}
+                                        <input type="checkbox" checked class="custom-control-input" value="MCA" name="mca" id="mca">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="MCA" name="mca" id="mca">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="mca">MCA</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <div class="custom-control custom-switch">
+                                    {% if user.company_coming.branch_mba %}
+                                        <input type="checkbox" checked class="custom-control-input" value="MBA" name="mba" id="mba">
+                                    {% else %}
+                                        <input type="checkbox" class="custom-control-input" value="MBA" name="mba" id="mba">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="mba">MBA</label>
+                                </div>
+                            </div>   
+                        </div>
+						<button type="submit" class="btn rounded-border btn-outline-warning">
+                           <span class="mx-4 px-4">
+                                Save
+                           </span>
+                        </button>
+					</form>
+				</div>
+				<div class="modal-footer bg-warning"></div>
+			</div>
+		</div>
+	</div>
+
+{% endblock body %}
+

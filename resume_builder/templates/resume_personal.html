@@ -109,18 +109,18 @@ Builder
             {% endif %}
         </div>
     </div>
-    <div class="form-row">
+    <!-- <div class="form-row">
         <div class="form-group col-md-12">
             <div class="custom-file">
                     <input type="file" name="photo" class="custom-file-input" id="resume_image">
                 {% if user.resume_detail.photo %}
-                    <label class="custom-file-label" for="resume_image" required>{{ user.resume_detail.photo }}</label>
+                    <label class="custom-file-label" for="resume_image" required>{{ user.resume_detail.photo.url }}</label>
                 {% else %}
                     <label class="custom-file-label" for="resume_image" required>Choose Image</label>
                 {% endif %}
             </div>
         </div>
-    </div>
+    </div> -->
     <button type="submit" class="btn btn-outline-primary float-right my-3">Save and Proceed</button>
 </form>
 

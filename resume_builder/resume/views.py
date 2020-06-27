@@ -1,17 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
-from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.models import User
+from company.models import Company_Coming
 from .models import Resume_Detail
 
 # Create your views here.
 def is_student(user):
-    return user.groups.filter(name = 'resume').exists()
+    return user.groups.filter(name = 'student').exists()
+
+@user_passes_test(is_student, login_url = '/')
+@login_required
+def student_home(request):
+    return render(request, 'student_home.html')
 
 @user_passes_test(is_student, login_url = '/')
 @login_required
 def resume_personal(request):
-    if request.method == 'POST' and request.FILES['photo']:
+    if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         adm_no = request.POST.get('adm_no')
@@ -22,28 +28,46 @@ def resume_personal(request):
         state = request.POST.get('state')
         city = request.POST.get('city')
         zip_code = request.POST.get('zip_code')
-        photo = request.FILES['photo']
 
-        if request.user.username == adm_no:
-            Resume_Detail.objects.filter(adm_no = request.user.username).update(
-                user_id = request.user.id,
-                first_name = first_name,
-                last_name = last_name,
-                adm_no = adm_no,
-                email = email,
-                phn_no = phn_no,
-                linkedin_id = linkedin_id,
-                address = address,
-                state = state,
-                city = city,
-                zip_code = zip_code,
-                photo = FileSystemStorage().save(photo.name, photo)
-            )
-            messages.success(request, "Data saved successfully")
-            return redirect('resume_career')
+        if Resume_Detail.objects.filter(adm_no = request.user.username).exists():
+            if request.user.username == adm_no:
+                Resume_Detail.objects.update(
+                    first_name = first_name,
+                    last_name = last_name,
+                    adm_no = adm_no,
+                    email = email,
+                    phn_no = phn_no,
+                    linkedin_id = linkedin_id,
+                    address = address,
+                    state = state,
+                    city = city,
+                    zip_code = zip_code
+                )
+                messages.success(request, "Data updated successfully")
+                return redirect('resume_career')
+            else:
+                messages.error(request, "Data couldn't be saved!, Please check that the Username and Admission number are name")
+                return redirect('resume_personal')
         else:
-            messages.error(request, "Data couldn't be saved!, Please check that the Username and Admission number are name")
-            return redirect('resume_personal')
+            if request.user.username == adm_no:
+                Resume_Detail(
+                    user_id = request.user.id,
+                    first_name = first_name,
+                    last_name = last_name,
+                    adm_no = adm_no,
+                    email = email,
+                    phn_no = phn_no,
+                    linkedin_id = linkedin_id,
+                    address = address,
+                    state = state,
+                    city = city,
+                    zip_code = zip_code
+                ).save()
+                messages.success(request, "Data saved successfully")
+                return redirect('resume_career')
+            else:
+                messages.error(request, "Data couldn't be saved!, Please check that the Username and Admission number are name")
+                return redirect('resume_personal')
     return render(request, 'resume_personal.html')
 
 @user_passes_test(is_student, login_url = '/')
@@ -109,17 +133,20 @@ def resume_other_qual(request):
         university_other_graduation = request.POST.get('university_other_graduation')
         passing_year_other_graduation = request.POST.get('passing_year_other_graduation')
         percent_other_graduation = request.POST.get('percent_other_graduation')
-        Resume_Detail.objects.filter(adm_no = request.user.username).update(
-            university_diploma = university_diploma,
-            passing_year_diploma = passing_year_diploma,
-            percent_diploma = percent_diploma,
-            graduation_course = graduation_course,
-            university_other_graduation = university_other_graduation,
-            passing_year_other_graduation = passing_year_other_graduation,
-            percent_other_graduation = percent_other_graduation
-        )
-        messages.success(request, "Data saved successfully")
-        return redirect('resume_train_certi')
+        if percent_diploma == "" or percent_other_graduation == "":
+            percent_diploma = 0.0
+            percent_other_graduation = 0.0
+            Resume_Detail.objects.filter(adm_no = request.user.username).update(
+                university_diploma = university_diploma,
+                passing_year_diploma = passing_year_diploma,
+                percent_diploma = percent_diploma,
+                graduation_course = graduation_course,
+                university_other_graduation = university_other_graduation,
+                passing_year_other_graduation = passing_year_other_graduation,
+                percent_other_graduation = percent_other_graduation
+            )
+            messages.success(request, "Data saved successfully")
+            return redirect('resume_train_certi')
     return render(request, 'resume-other-qual.html')
 
 @user_passes_test(is_student, login_url = '/')
@@ -188,3 +215,32 @@ def resume_references(request):
 @login_required
 def resume_print(request):
     return render(request, 'resume_format.html')
+
+@user_passes_test(is_student, login_url = '/')
+@login_required
+def company_list(request):
+    companies = Company_Coming.objects.all()
+    applied = []
+    for i in companies:
+        applied.append(i.students_applied)
+    return render(request, 'company_list.html', {'companies': companies, 'applied':applied})  
+
+@user_passes_test(is_student, login_url = '/')
+@login_required
+def company_list_apply(request, company_id):
+    s = Company_Coming.objects.filter(company_id = company_id)
+    name = ""
+    for i in s:
+        name += i.students_applied
+    students = name.split(",")
+    if request.method == 'POST':
+        if request.user.resume_detail.first_name in students:
+            Company_Coming.objects.filter(company_id = company_id).update(
+                students_applied = name.replace(request.user.resume_detail.first_name + ",", "")
+            )
+        else:
+            Company_Coming.objects.filter(company_id = company_id).update(
+                students_applied = request.user.resume_detail.first_name + "," + name
+            )
+        return redirect('company_list')
+    return render(request, 'company_list.html')

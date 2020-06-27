@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Resumes
+{% endblock title %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="my-2 mr-0" method="GET" action="/company/search/">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input class="form-control mr-sm-2" type="search" name="query" id="query" placeholder="Search" aria-label="Search">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-success mr-0 ml-0 my-2 my-sm-0" type="submit">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    {% if all_resumes|length == 0 %}
+    <h2>No Search Results</h2>
+    Your search - <b>{{ query }}</b> - did not match any of the first name or last name.
+    <br>
+    Suggestions:
+    <ul>
+        <li>
+            Make sure that all words are spelled correctly.
+        </li>
+        <li>
+            Try different keywords.
+        </li>
+        <li>
+            Try fewer keywords.
+        </li>
+    </ul>
+    {% else %}
+        <div class="row my-4">
+            {% for resume in all_resumes %}
+                <div class="col-md-4">
+                    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-success">
+                                {{ resume.course }}, {{ resume.branch }}
+                            </strong>
+                            <h3 class="mb-0">
+                                {{ resume.first_name }} {{ resume.last_name }}
+                            </h3>
+                            <a href="/resume/view-resume/{{ resume.s_no }}/" target="_blank" class="stretched-link btn btn-outline-success mt-3 float-left mr-auto">
+                                View Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock body %}

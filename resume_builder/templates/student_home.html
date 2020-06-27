@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Student
+{% endblock title %}
+
+{% block body %}
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="display-4 text-bolder text-dark text-center">
+                    <strong>Student Home</strong>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="row">
+            <div class="col-6">
+                <a href="/resume/company-list" class="btn btn-warning border btn-lg rounded-border">Companies Coming</a>
+            </div>
+            <div class="col-6">
+                <a href="/resume/resume-personal/" class="btn btn-warning border btn-lg rounded-border float-right">&nbsp&nbsp&nbsp&nbsp Make Resume &nbsp&nbsp&nbsp&nbsp</a>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Resume Format</title>
+    <title>{{ request.user.resume_detail.first_name }} {{ request.user.resume_detail.last_name }} Resume</title>
     <style>
         .resume {
             padding-top: 20px;
@@ -147,7 +147,7 @@
                         <td width="70%">
                             <div class="main_info">
                                 <h2>{{ user.resume_detail.first_name }} {{ user.resume_detail.last_name }}</h2>
-                                <h4>{{ user.resume_detail.course }}, {{ user.resume_detail.branch }}</h4>
+                                <h4>{{ user.resume_detail.course }}{% if user.resume_detail.branch %}, {{ user.resume_detail.branch }}{% else %}{% endif %}</h4>
                                 <h4>Contact no&nbsp;: {{ user.resume_detail.phn_no }}</h4>
                                 <h4>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ user.resume_detail.email }}</h4>
                                 <h4>LinkedIn&nbsp;&nbsp;&nbsp;&nbsp;: {{ user.resume_detail.linkedin_id }}</h4>
@@ -155,7 +155,8 @@
                         </td>
                         <td>
                             <div class="pic" style="padding-left: 10px;">
-                                <img src="{{ user.resume_detail.photo.url }}" style="max-height: 150px; max-width: 150px;"  alt="Image">
+                                <br><br><br>
+                                <span class="mx-auto my-auto text-center">Image</span>
                             </div>
                         </td>
                     </tr>

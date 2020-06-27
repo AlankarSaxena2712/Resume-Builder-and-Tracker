@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{ resume.first_name }} {{ resume.last_name }} Resume</title>
+    <style>
+        .resume {
+            padding-top: 20px;
+        }
+
+        .main_info {
+            width: 50%;
+            padding-left: 10px;
+        }
+
+        .pic {
+            width: 150px;
+            border: solid black 1px;
+            margin-right: 10px;
+            height: 150px;
+            text-align: center;
+        }
+
+        .career {
+            font-size: 1.2em;
+            border-radius: 2%;
+            height: 50%;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            margin-top: 5px;
+            border: solid rgb(226, 226, 226) 1px;
+            background-color: rgb(226, 226, 226);
+        }
+
+        h3 {
+            margin: 0;
+            padding: 10px;
+        }
+
+        h2 {
+            margin: 5px;
+        }
+
+        h4 {
+            margin: 5px;
+        }
+
+        .list {
+            font-size: 1.2em;
+            padding-left: 0px;
+            list-style-type: georgian;
+        }
+
+        p {
+            font-size: 1.2em;
+            text-align: justify;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 10px;
+            padding-right: 0;
+            font-size: 1.2em;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .btn {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 900px) {
+            .info {
+                width: 100%;
+            }
+        }
+
+        @media Print {
+            .btn {
+                display: none;
+            }
+        }
+
+        .container {
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+
+        body {
+            -webkit-print-color-adjust: exact;
+        }
+
+        .imageicon {
+            text-align: center;
+        }
+
+        .x tr td {
+            padding: 0px;
+        }
+
+        .imageicon img {
+            height: 105px;
+            margin: 20px;
+            padding: 0px;
+            float: left;
+            margin-left: 20px;
+        }
+    </style>
+    <style media="print">
+        @page {
+            size: auto;
+            margin: 0;
+
+            /* a[href]:after {
+                content: none !important;
+            } */
+        }
+    </style>
+</head>
+
+<body>
+    {% load filter_tags %}
+    <div class="container">
+        <div class="resume">
+            <div class="info">
+                <table class="x" style="border: 0; width: 100%; padding: 0px;">
+                    <tr>
+                        <td width="70%">
+                            <div class="main_info">
+                                <h2>{{ resume.first_name }} {{ resume.last_name }}</h2>
+                                <h4>{{ resume.course }}{% if resume.branch %}, {{ resume.branch }}{% else %}{% endif %}</h4>
+                                <h4>Contact no&nbsp;: {{ resume.phn_no }}</h4>
+                                <h4>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ resume.email }}</h4>
+                                <h4>LinkedIn&nbsp;&nbsp;&nbsp;&nbsp;: {{ resume.linkedin_id }}</h4>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="pic" style="padding-left: 10px;">
+                                <br><br><br>
+                                <span class="mx-auto my-auto text-center">Image</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="career">
+                    <h4>CAREER OBJECTIVE</h4>
+                </div>
+                <p class="text-justify">
+                    {{ resume.career_objective }}
+                </p>
+                <div class="career">
+                    <h4>ACADEMIC CREDENTIALS</h4>
+                </div>
+                <div class="table">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Qualification</th>
+                                <th scope="col">Board/University</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if resume.graduation_course and resume.university_other_graduation and resume.passing_year_other_graduation and resume.percent_other_graduation %}
+                                <tr>
+                                    <td scope="row">{{ resume.graduation_course }}</td>
+                                    <td>{{ resume.university_other_graduation }}</td>
+                                    <td>{{ resume.passing_year_other_graduation }}</td>
+                                    <td>{{ resume.percent_other_graduation }}</td>
+                                </tr>
+                            {% else %}
+                            {% endif %}
+                            {% if resume.university_diploma and resume.passing_year_diploma and resume.percent_diploma %}
+                                <tr>
+                                    <td scope="row">Diploma</td>
+                                    <td>{{ resume.university_diploma }}</td>
+                                    <td>{{ resume.passing_year_diploma }}</td>
+                                    <td>{{ resume.percent_diploma }}</td>
+                                </tr>
+                            {% else %}
+                            {% endif %}
+                            <tr>
+                                <td scope="row">{{ resume.course }}</td>
+                                <td>{{ resume.university }}</td>
+                                <td>{{ resume.passing_year }}</td>
+                                <td>{{ resume.percent_academic }}</td>
+                            </tr>
+
+                            <tr>
+                                <td scope="row">Intermediate</td>
+                                <td>{{ resume.board_secondary_school }}</td>
+                                <td>{{ resume.passing_year_secondary_school }}</td>
+                                <td>{{ resume.percent_secondary_school }}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">High School</td>
+                                <td>{{ resume.board_high_school }}</td>
+                                <td>{{ resume.passing_year_high_school }}</td>
+                                <td>{{ resume.percent_high_school }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="career">
+                    <h4>TECHNICAL PROFICIENCIES</h4>
+                </div>
+
+                <div class="list">
+                    <ul>
+                        {% with resume.tech_skills|split:',' as tech_skills %}
+                            {% for skill in tech_skills %}
+                                <li>
+                                    {{ skill }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </div>
+                <div class="career">
+                    <h4>EXPERIENTIAL LEARNING (INTERNSHIP PROGRAM)</h4>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li>
+                            Company Name &nbsp&nbsp&nbsp: {{ resume.internship_company_name }}
+                        </li>
+                        <li>
+                            Project Title &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ resume.internship_project_title }}
+                        </li>
+                        <li>
+                            Duration &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: {{ resume.internship_duration }}
+                        </li>
+                    </ul>
+                </div>
+                <br><br><br><br><br>
+                <div class="career">
+                    <h4>TRAINING & CERTIFICATION</h4>
+                </div>
+                <div class="list">
+                    <ul>
+                        {% with resume.certificates|split:',' as certificates %}
+                            {% for certificate in certificates %}
+                                <li>
+                                    {{ certificate }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </div>
+
+                <div class="career">
+                    <h4>PROJECTS</h4>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li>
+                            {{ resume.internship_project_description }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="career">
+                    <h4>INTERPERSONAL SKILL</h4>
+                </div>
+                <div class="list">
+                    <ul>
+                        {% with resume.interpersonal_skills|split:',' as interpersonal_skills %}
+                            {% for interpersonal_skill in interpersonal_skills %}
+                                <li>
+                                    {{ interpersonal_skill }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </div>
+
+                <div class="career">
+                    <h4>ACHIEVEMENTS</h4>
+                </div>
+                <div class="list">
+                    <ul>
+                        {% with resume.achievements|split:',' as achievements %}
+                            {% for achievement in achievements %}
+                                <li>
+                                    {{ achievement }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </div>
+                <div class="career">
+                    <h4>EXTRA/CO-CURRICULAR ACTIVITIES</h4>
+                </div>
+                <div class="list"> 
+                    <ul>
+                        {% with resume.co_curriculars|split:',' as co_curriculars %}
+                            {% for co_curricular in co_curriculars %}
+                                <li>
+                                    {{ co_curricular }}
+                                </li>
+                            {% endfor %}
+                        {% endwith %}
+                    </ul>
+                </div>
+                <div class="career">
+                    <h4>REFERENCES</h4>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li>
+                            Reference Name &nbsp;&nbsp;&nbsp; : {{ resume.resume_reference_name }}
+                        </li>
+                        <li>
+                            Degisnation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ resume.resume_reference_designation }}
+                        </li>
+                        <li>
+                            Organization &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ resume.resume_reference_organization }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p>Place:________________</p>
+            <p>Date :________________</p>
+        </div>
+    </div>
+    <div class="container">
+        <center>
+            <button onclick="CallPrint()" class="btn btn-primary my-2">
+                Print
+            </button>
+        </center>
+    </div>
+    <script>
+        function CallPrint() {
+            window.print();
+        }
+    </script>
+</body>
+
+</html>

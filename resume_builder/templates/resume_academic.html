@@ -5,6 +5,7 @@
 <h2 class="mb-3">Academic Qualifications</h2>
 <form method="POST">
 {% csrf_token %}
+    <h3>Graduation</h3>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="course">Course *</label>
@@ -38,6 +39,7 @@
                     <option value="ME">ME</option>
                     <option value="EC">EC</option>
                     <option value="EN">EN</option>
+                    <option value="">None of the Above</option>
                 </select>
             {% else %}
                 <select class="form-control" id="branch" name="branch" required>
@@ -49,6 +51,7 @@
                     <option value="ME">ME</option>
                     <option value="EC">EC</option>
                     <option value="EN">EN</option>
+                    <option value="">None of the Above</option>
                 </select>
             {% endif %}
         </div>
