@@ -89,7 +89,7 @@ DATABASES = {
     }
 }
 
-DATABASES["default"] = dj_database_url.parse('postgresql://resume_builder_tracker_user:dKorNY9FWsRdifJ58KNQ1vrBJeYF234M@dpg-cu9m0hlds78s739fige0-a.singapore-postgres.render.com/resume_builder_tracker')
+DATABASES["default"] = dj_database_url.parse('postgresql://postgres:EPic@1234@db.ehehxupscnvzzduktzky.supabase.co:5432/postgres')
 
 
 # Password validation
