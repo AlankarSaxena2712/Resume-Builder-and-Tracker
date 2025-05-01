@@ -89,7 +89,7 @@ DATABASES = {
     }
 }
 
-DATABASES["default"] = dj_database_url.parse('postgresql://postgres:EPic@1234@db.ehehxupscnvzzduktzky.supabase.co:5432/postgres')
+DATABASES["default"] = dj_database_url.parse('postgresql://postgres.ehehxupscnvzzduktzky:EPic@1234@aws-0-ap-south-1.pooler.supabase.com:6543/postgres')
 
 
 # Password validation
